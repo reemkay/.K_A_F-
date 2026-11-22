@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0b0b0d">
+<title>כ • ك KAF — Sepher Yetsirah & Numérologie</title>
+<style>
+  :root {
+    --bg: #0b0b0d;
+    --card: #131318;
+    --pink: #ff4da6;
+    --pink-light: #ff85c2;
+    --text: #f5f5f7;
+    --muted: #8e8e9a;
+    --border: #2a2a35;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    margin: 0;
+    padding: 16px 16px 48px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Mono', 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .container { width: 100%; max-width: 440px; }
+  header { text-align: center; margin-bottom: 14px; }
+  h1 { color: var(--pink); font-size: 1.45rem; margin: 0 0 4px; letter-spacing: 2px; }
+  .subtitle { color: var(--muted); font-size: 0.78rem; margin: 0; }
+  .tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 5px;
+    margin-bottom: 16px;
+  }
+  .tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: bold;
+    padding: 10px 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .tab-btn.active {
+    background: var(--pink);
+    color: #0b0b0d;
+    box-shadow: 0 0 14px rgba(255, 77, 166, 0.35);
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  .field-label {
+    font-size: 0.72rem;
+    color: var(--pink-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .input-group { position: relative; margin-bottom: 14px; }
+  input[type="text"] {
+    width: 100%;
+    padding: 14px 40px 14px 14px;
+    font-size: 1.05rem;
+    font-family: inherit;
+    background: var(--card);
+    color: var(--text);
+    border: 1.5px solid var(--pink);
+    border-radius: 14px;
+    outline: none;
+    box-shadow: 0 0 18px rgba(255, 77, 166, 0.14);
+  }
+  input::placeholder { color: #555566; }
+  .clear-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.15rem;
+    cursor: pointer;
+    padding: 4px 8px;
+  }
+  .hebrew-box {
+    background: var(--card);
+    border: 1px solid var(--pink);
+    border-radius: 14px;
+    padding: 12px;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .hebrew-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .hebrew-text { font-size: 1.9rem; color: var(--text); letter-spacing: 4px; min-height: 36px; direction: rtl; }
+  .results-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+  .results-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 14px; }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 8px;
+    text-align: center;
+  }
+  .stat-card.highlight {
+    border-color: var(--pink);
+    background: linear-gradient(180deg, rgba(255,77,166,0.16) 0%, var(--card) 100%);
+  }
+  .stat-label { font-size: 0.66rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; }
+  .stat-value { font-size: 1.75rem; font-weight: bold; color: var(--pink); }
+  .stat-sub { font-size: 0.68rem; color: var(--pink-light); margin-top: 3px; }
+  .detail-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 14px;
+  }
+  .detail-title { font-size: 0.72rem; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+  .letters-flow { display: flex; flex-wrap: wrap; gap: 6px; min-height: 36px; align-items: center; }
+  .letter-chip {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    background: #1c1c24;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 5px 8px;
+    min-width: 40px;
+  }
+  .letter-chip.muette { opacity: 0.4; border-style: dashed; }
+  .letter-chip .char { font-weight: bold; color: var(--text); font-size: 0.9rem; }
+  .letter-chip .heb { font-size: 1rem; color: var(--pink); line-height: 1.1; }
+  .letter-chip .val { font-size: 0.68rem; color: var(--pink-light); }
+  .signification {
+    background: var(--card);
+    border-left: 3px solid var(--pink);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 0.83rem;
+    line-height: 1.48;
+    color: #e2e2ea;
+    margin-bottom: 12px;
+  }
+  .signification strong { color: var(--pink); }
+  details { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 12px 14px; }
+  summary {
+    color: var(--pink-light);
+    font-weight: bold;
+    font-size: 0.85rem;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .table-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 12px; font-size: 0.76rem; }
+  .table-cell { background: #1a1a22; padding: 6px 4px; border-radius: 6px; text-align: center; }
+  .table-cell span { color: var(--pink); font-weight: bold; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>כ • ك KAF</h1>
+    <p class="subtitle">Sepher Yetsirah & Thème Numérologique</p>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="mots">כ • ك Sepher</button>
+    <button class="tab-btn" data-tab="num">✧ Numérologie</button>
+  </div>
+
+  <div class="tab-panel active" id="panel-mots">
+    <div class="input-group">
+      <input type="text" id="motInput" placeholder="Entre un mot ou un prénom..." autocomplete="off">
+      <button class="clear-btn" id="clearMot" title="Effacer">✕</button>
+    </div>
+
+    <div class="hebrew-box">
+      <div class="hebrew-label">Transcription Hébraïque</div>
+      <div class="hebrew-text" id="hebrewText">—</div>
+    </div>
+
+    <div class="results-grid-3">
+      <div class="stat-card">
+        <div class="stat-label">Classique</div>
+        <div class="stat-value" id="valClassique">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Katan</div>
+        <div class="stat-value" id="valKatan">0</div>
+      </div>
+      <div class="stat-card highlight">
+        <div class="stat-label">Clé Réduite</div>
+        <div class="stat-value" id="valCle">0</div>
+      </div>
+    </div>
+
+    <div class="signification" id="sigMotBox" style="display:none;"></div>
+
+    <div class="detail-box">
+      <div class="detail-title">Décomposition Sepher Yetsirah</div>
+      <div class="letters-flow" id="lettersFlow">
+        <span style="color:#555566; font-size:0.82rem;">Tape un mot ci-dessus...</span>
+      </div>
+    </div>
+
+    <details>
+      <summary>
+        <span>📜 Table des 22 lettres KAF</span>
+        <span>▼</span>
+      </summary>
+      <div class="table-grid" id="tableGrid"></div>
+    </details>
+  </div>
+
+  <div class="tab-panel" id="panel-num">
+    <label class="field-label" for="nomComplet">Prénom(s) & Nom complet</label>
+    <div class="input-group">
+      <input type="text" id="nomComplet" placeholder="Ex: Mohamed Ameen" autocomplete="off">
+      <button class="clear-btn" id="clearNom" title="Effacer">✕</button>
+    </div>
+
+    <label class="field-label" for="dateNaissance">Date de naissance (JJ/MM/AAAA)</label>
+    <div class="input-group">
+      <input type="text" id="dateNaissance" inputmode="numeric" placeholder="Ex: 20/04/571" maxlength="10" autocomplete="off">
+      <button class="clear-btn" id="clearDate" title="Effacer">✕</button>
+    </div>
+
+    <div class="results-grid-2">
+      <div class="stat-card highlight">
+        <div class="stat-label">Chemin de Vie</div>
+        <div class="stat-value" id="resChemin">—</div>
+        <div class="stat-sub">Mission de vie</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Année Perso 2026</div>
+        <div class="stat-value" id="resAnnee">—</div>
+        <div class="stat-sub">Cycle en cours</div>
+      </div>
+    </div>
+
+    <div class="results-grid-3">
+      <div class="stat-card highlight">
+        <div class="stat-label">Expression</div>
+        <div class="stat-value" id="resExpression">—</div>
+        <div class="stat-sub">Potentiel global</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Intime</div>
+        <div class="stat-value" id="resIntime">—</div>
+        <div class="stat-sub">Voyelles • Âme</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Réalisation</div>
+        <div class="stat-value" id="resRealisation">—</div>
+        <div class="stat-sub">Consonnes • Moi</div>
+      </div>
+    </div>
+
+    <div id="interpretationsNum"></div>
+  </div>
+</div>
+<script>
+const SEPHER_YETSIRAH = {
+  "A": ["א", 1, 1], "M": ["מ", 40, 4], "SH": ["ש", 300, 3], "CH": ["ש", 300, 3],
+  "B": ["ב", 2, 2], "G": ["ג", 3, 3], "D": ["ד", 4, 4], "K": ["כ", 20, 2],
+  "KH": ["כ", 20, 2], "C": ["כ", 20, 2], "P": ["פ", 80, 8], "F": ["פ", 80, 8],
+  "R": ["ר", 200, 2], "T": ["ת", 400, 4], "TH": ["ת", 400, 4], "E": ["ה", 5, 5],
+  "H": ["ח", 8, 8], "O": ["ו", 6, 6], "U": ["ו", 6, 6], "V": ["ו", 6, 6],
+  "W": ["ו", 6, 6], "Z": ["ז", 7, 7], "I": ["י", 10, 1], "J": ["י", 10, 1],
+  "Y": ["י", 10, 1], "L": ["ל", 30, 3], "N": ["נ", 50, 5], "S": ["ס", 60, 6],
+  "X": ["ס", 60, 6], "Q": ["ק", 100, 1]
+};
+const VOYELLES_MUETTES = new Set(["A", "E", "I"]);
+
+const SIGNIFICATIONS = {
+  1: "Le Pionnier — Force créatrice, commencement, indépendance et volonté pure.",
+  2: "Le Gardien — Dualité, intuition, sensibilité et alliance des contraires.",
+  3: "L'Architecte — Expression, créativité, communication et mouvement.",
+  4: "Le Bâtisseur — Structure, stabilité, travail, matière et ancrage.",
+  5: "Le Voyageur — Liberté, changement, magnétisme et transformation constante.",
+  6: "L'Harmoniste — Équilibre, cœur, responsabilité, famille et beauté.",
+  7: "Le Mystique — Sagesse cachée, quête de vérité, spiritualité et analyse.",
+  8: "Le Souverain — Puissance, justice, ambition et maîtrise matérielle.",
+  9: "L'Accompli — Universalité, altruisme, fin de cycle et lumière intérieure.",
+  11: "MAÎTRE NOMBRE 11 — L'Illuminé : intuition supérieure, canal spirituel et révélation.",
+  22: "MAÎTRE NOMBRE 22 — Le Maître Bâtisseur : capacité à concrétiser de grands desseins.",
+  33: "MAÎTRE NOMBRE 33 — Le Guide Universel : rayonnement du cœur et transmission."
+};
+
+function reductionTheosophique(nombre) {
+  const maitres = new Set([11, 22, 33]);
+  while (nombre > 9 && !maitres.has(nombre)) {
+    nombre = String(nombre).split("").reduce((acc, c) => acc + Number(c), 0);
+  }
+  return nombre;
+}
+
+function nettoyer(texte) {
+  return texte.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().replace(/[^A-Z ]/g, "").replace(/\s+/g, " ").trim();
+}
+
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById("panel-" + btn.dataset.tab).classList.add("active");
+  });
+});
+
+const motInput = document.getElementById("motInput");
+const hebrewText = document.getElementById("hebrewText");
+const valClassique = document.getElementById("valClassique");
+const valKatan = document.getElementById("valKatan");
+const valCle = document.getElementById("valCle");
+const lettersFlow = document.getElementById("lettersFlow");
+const sigMotBox = document.getElementById("sigMotBox");
+
+function analyserMot() {
+  const propre = nettoyer(motInput.value);
+  if (!propre) {
+    hebrewText.textContent = "—";
+    valClassique.textContent = "0";
+    valKatan.textContent = "0";
+    valCle.textContent = "0";
+    sigMotBox.style.display = "none";
+    lettersFlow.innerHTML = '<span style="color:#555566; font-size:0.82rem;">Tape un mot ci-dessus...</span>';
+    return;
+  }
+
+  const mots = propre.split(" ");
+  const hebreuMots = [];
+  let totalClassique = 0, totalKatan = 0, htmlChips = "";
+
+  for (const mot of mots) {
+    const hebMot = [];
+    let i = 0;
+    while (i < mot.length) {
+      let sym = "", fin = false;
+      if (i + 1 < mot.length && SEPHER_YETSIRAH[mot.slice(i, i + 2)]) {
+        sym = mot.slice(i, i + 2);
+        fin = (i + 2 === mot.length);
+        i += 2;
+      } else {
+        sym = mot[i];
+        fin = (i + 1 === mot.length);
+        i += 1;
+      }
+
+      if (sym === "E" || (VOYELLES_MUETTES.has(sym) && !fin)) {
+        htmlChips += `<div class="letter-chip muette"><span class="char">${sym}</span><span class="heb">·</span><span class="val">muet</span></div>`;
+        continue;
+      }
+
+      if (SEPHER_YETSIRAH[sym]) {
+        const [heb, valC, valK] = SEPHER_YETSIRAH[sym];
+        hebMot.push(heb);
+        totalClassique += valC;
+        totalKatan += valK;
+        htmlChips += `<div class="letter-chip"><span class="char">${sym}</span><span class="heb">${heb}</span><span class="val">${valC}</span></div>`;
+      }
+    }
+    hebreuMots.push(hebMot.join(""));
+  }
+
+  const cle = totalClassique > 0 ? reductionTheosophique(totalClassique) : 0;
+  hebrewText.textContent = hebreuMots.join(" ") || "—";
+  valClassique.textContent = totalClassique;
+  valKatan.textContent = totalKatan;
+  valCle.textContent = cle;
+  lettersFlow.innerHTML = htmlChips;
+
+  if (cle > 0 && SIGNIFICATIONS[cle]) {
+    sigMotBox.style.display = "block";
+    sigMotBox.innerHTML = `<strong>Clé ${cle} :</strong> ${SIGNIFICATIONS[cle]}`;
+  } else {
+    sigMotBox.style.display = "none";
+  }
+}
+
+motInput.addEventListener("input", analyserMot);
+document.getElementById("clearMot").addEventListener("click", () => { motInput.value = ""; analyserMot(); motInput.focus(); });
+
+const ordres = [
+  ["A","א","1"],["B","ב","2"],["G","ג","3"],["D","ד","4"],["E","ה","5"],["O/U/V/W","ו","6"],
+  ["Z","ז","7"],["H","ח","8"],["I/J/Y","י","10"],["C/K/KH","כ","20"],["L","ל","30"],["M","מ","40"],
+  ["N","נ","50"],["S/X","ס","60"],["P/F","פ","80"],["Q","ק","100"],["R","ר","200"],["SH/CH","ש","300"],["T/TH","ת","400"]
+];
+document.getElementById("tableGrid").innerHTML = ordres.map(([l,h,v]) => `<div class="table-cell">${l} <span>${h}</span> (${v})</div>`).join("");
+const PYTHAGORE = {
+  A:1, J:1, S:1, B:2, K:2, T:2, C:3, L:3, U:3,
+  D:4, M:4, V:4, E:5, N:5, W:5, F:6, O:6, X:6,
+  G:7, P:7, Y:7, H:8, Q:8, Z:8, I:9, R:9
+};
+const VOYELLES_PYTH = new Set(["A", "E", "I", "O", "U", "Y"]);
+
+const nomInput = document.getElementById("nomComplet");
+const dateInput = document.getElementById("dateNaissance");
+const resChemin = document.getElementById("resChemin");
+const resAnnee = document.getElementById("resAnnee");
+const resExpression = document.getElementById("resExpression");
+const resIntime = document.getElementById("resIntime");
+const resRealisation = document.getElementById("resRealisation");
+const interpBox = document.getElementById("interpretationsNum");
+
+dateInput.addEventListener("input", (e) => {
+  let digits = e.target.value.replace(/\D/g, "").slice(0, 8);
+  if (digits.length >= 5) {
+    e.target.value = `${digits.slice(0,2)}/${digits.slice(2,4)}/${digits.slice(4)}`;
+  } else if (digits.length >= 3) {
+    e.target.value = `${digits.slice(0,2)}/${digits.slice(2)}`;
+  } else {
+    e.target.value = digits;
+  }
+  calculerTheme();
+});
+
+function calculerTheme() {
+  let htmlInterp = "";
+
+  const digits = dateInput.value.replace(/\D/g, "");
+  if (digits.length === 8) {
+    const jour = Number(digits.slice(0, 2));
+    const mois = Number(digits.slice(2, 4));
+    const annee = Number(digits.slice(4, 8));
+
+    const sommeDate = reductionTheosophique(jour) + reductionTheosophique(mois) + reductionTheosophique(annee);
+    const cheminVie = reductionTheosophique(sommeDate);
+    resChemin.textContent = cheminVie;
+
+    const anneePerso = reductionTheosophique(reductionTheosophique(jour) + reductionTheosophique(mois) + 1);
+    resAnnee.textContent = anneePerso;
+
+    htmlInterp += `<div class="signification"><strong>Chemin de Vie ${cheminVie} :</strong> ${SIGNIFICATIONS[cheminVie] || ""}</div>`;
+    htmlInterp += `<div class="signification"><strong>Année Personnelle ${anneePerso} (2026) :</strong> ${SIGNIFICATIONS[anneePerso] || ""}</div>`;
+  } else {
+    resChemin.textContent = "—";
+    resAnnee.textContent = "—";
+  }
+
+  const lettres = nettoyer(nomInput.value).replace(/ /g, "");
+  if (lettres.length > 0) {
+    let sumTotal = 0, sumVoy = 0, sumCons = 0;
+    for (const ch of lettres) {
+      const val = PYTHAGORE[ch] || 0;
+      sumTotal += val;
+      if (VOYELLES_PYTH.has(ch)) sumVoy += val;
+      else sumCons += val;
+    }
+    const expr = sumTotal > 0 ? reductionTheosophique(sumTotal) : "—";
+    const intime = sumVoy > 0 ? reductionTheosophique(sumVoy) : "—";
+    const real = sumCons > 0 ? reductionTheosophique(sumCons) : "—";
+
+    resExpression.textContent = expr;
+    resIntime.textContent = intime;
+    resRealisation.textContent = real;
+
+    if (SIGNIFICATIONS[expr]) {
+      htmlInterp += `<div class="signification"><strong>Nombre d'Expression ${expr} :</strong> ${SIGNIFICATIONS[expr]}</div>`;
+    }
+    if (SIGNIFICATIONS[intime]) {
+      htmlInterp += `<div class="signification"><strong>Nombre Intime ${intime} :</strong> ${SIGNIFICATIONS[intime]}</div>`;
+    }
+    if (SIGNIFICATIONS[real]) {
+      htmlInterp += `<div class="signification"><strong>Nombre de Réalisation ${real} :</strong> ${SIGNIFICATIONS[real]}</div>`;
+    }
+  } else {
+    resExpression.textContent = "—";
+    resIntime.textContent = "—";
+    resRealisation.textContent = "—";
+  }
+
+  interpBox.innerHTML = htmlInterp;
+}
+
+nomInput.addEventListener("input", calculerTheme);
+document.getElementById("clearNom").addEventListener("click", () => { nomInput.value = ""; calculerTheme(); nomInput.focus(); });
+document.getElementById("clearDate").addEventListener("click", () => { dateInput.value = ""; calculerTheme(); dateInput.focus(); });
+</script>
+</body>
+</html>
