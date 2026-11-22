@@ -2,7 +2,7 @@
 
 > *« Ce qui est en haut est comme ce qui est en bas. Chaque lettre porte un nombre, chaque nom porte une clé. »*
 
-**KAF** est un jeu de conversion et de traduction du langage littéraire au langage numérique en ligne de commande (terminal), inspiré de **OverTheWire Bandit**.
+**KAF** est un jeu de conversion et de traduction du langage littéraire au langage numérique.
 
 ## 🔒 Zéro téléchargement • 100 % Terminal
 Aucun fichier à installer sur votre ordinateur. Le jeu tourne directement dans votre terminal via SSH (compatible **Linux**, **macOS** et **Windows PowerShell**).
