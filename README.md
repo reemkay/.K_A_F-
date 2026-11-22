@@ -12,7 +12,7 @@ Aucun fichier à installer sur votre ordinateur. Le jeu tourne directement dans 
 Ouvrez votre terminal et lancez la commande suivante :
 
 ```bash
-ssh kaf1@rzxdr-2001-861-5860-bc80-b4b7-ce4e-bc95-5098.run.pinggy-free.link -p 44899
+ssh kaf1@maxkf-2001-861-5860-bc80-b4b7-ce4e-bc95-5098.run.pinggy-free.link -p 42929
 ```
 
 * **Mot de passe Niveau 1 :** `kaf1`
