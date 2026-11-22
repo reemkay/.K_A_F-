@@ -21,3 +21,6 @@ ssh kaf1@35.227.54.38
 ## 💡 Commandes utiles en jeu
 * `table` : Affiche le tableau des 22 lettres et leurs correspondances.
 * `q` : Quitte proprement la session à tout moment.
+
+## 🛡️ Confidentialité & RGPD
+* **Données collectées :** Ce jeu ne conserve ni votre prénom, ni votre date de naissance. Seuls les journaux techniques de connexion (IP) et le numéro de téléphone saisi au Niveau 4 sont enregistrés sur un serveur sécurisé.`.
