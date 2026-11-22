@@ -2,7 +2,7 @@
 
 > *« Ce qui est en haut est comme ce qui est en bas. Chaque lettre porte un nombre, chaque nom porte une clé. »*
 
-**KAF** est un jeu d'énigmes, de gématrie et de logique en ligne de commande (terminal), inspiré de **OverTheWire Bandit**.
+**KAF** est un jeu d'énigmes, de gématrie et de logique.
 
 ## 🔒 Zéro téléchargement • 100 % Terminal
 Aucun fichier à installer sur votre ordinateur. Le jeu tourne directement dans votre terminal via SSH (compatible **Linux**, **macOS** et **Windows PowerShell**).
