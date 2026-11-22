@@ -24,3 +24,6 @@ ssh kaf1@35.227.54.38
 
 ## 🛡️ Confidentialité & RGPD
 * **Données collectées :** Ce jeu ne conserve ni votre prénom, ni votre date de naissance. Seuls les journaux techniques de connexion (IP) et le numéro de téléphone saisi au Niveau 4 sont enregistrés sur un serveur sécurisé.`.
+
+### 📱 Convertisseur Mobile & Numérologie
+👉 **[Ouvrir l'application web KAF](https://kaf8trad.netlify.app/)**
