@@ -1,0 +1,23 @@
+# ₪ KAF — L'Initiation du Sepher Yetsirah
+
+> *« Ce qui est en haut est comme ce qui est en bas. Chaque lettre porte un nombre, chaque nom porte une clé. »*
+
+**KAF** est un jeu d'énigmes, de gématrie et de logique en ligne de commande (terminal), inspiré de **OverTheWire Bandit**.
+
+## 🔒 Zéro téléchargement • 100 % Terminal
+Aucun fichier à installer sur votre ordinateur. Le jeu tourne directement dans votre terminal via SSH (compatible **Linux**, **macOS** et **Windows PowerShell**).
+
+## 🚀 Comment entrer dans le Sanctuaire
+
+Ouvrez votre terminal et lancez la commande suivante :
+
+```bash
+ssh kaf1@ADRESSE_PINGGY -p PORT_PINGGY
+```
+
+* **Mot de passe Niveau 1 :** `kaf1`
+*(Tapez `yes` lors de la première connexion si le terminal demande de confirmer l'empreinte du serveur).*
+
+## 💡 Commandes utiles en jeu
+* `table` : Affiche le tableau des 22 lettres et leurs correspondances.
+* `q` : Quitte proprement la session à tout moment.
