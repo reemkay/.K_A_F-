@@ -1,4 +1,4 @@
-# ₪ KAF — L'Initiation du Sepher Yetsirah
+# כ • ك KAF — L'Initiation du Sepher Yetsirah
 
 > *« Ce qui est en haut est comme ce qui est en bas. Chaque lettre porte un nombre, chaque nom porte une clé. »*
 
@@ -12,7 +12,7 @@ Aucun fichier à installer sur votre ordinateur. Le jeu tourne directement dans 
 Ouvrez votre terminal et lancez la commande suivante :
 
 ```bash
-ssh kaf1@tcp://xignt-2001-861-5860-bc80-b4b7-ce4e-bc95-5098.run.pinggy-free.link:42971 -p 42791
+ssh kaf1@rzxdr-2001-861-5860-bc80-b4b7-ce4e-bc95-5098.run.pinggy-free.link -p 44899
 ```
 
 * **Mot de passe Niveau 1 :** `kaf1`
