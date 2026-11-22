@@ -2,7 +2,7 @@
 
 > *« Ce qui est en haut est comme ce qui est en bas. Chaque lettre porte un nombre, chaque nom porte une clé. »*
 
-**KAF** est un jeu de conversion et de traduction du langage littéraire au langage numérique.
+**KAF** est un jeu de conversion / traduction du langage littéraire au langage numérique afin de décrypter des messages codés.
 
 ## 🔒 Zéro téléchargement • 100 % Terminal
 Aucun fichier à installer sur votre ordinateur. Le jeu tourne directement dans votre terminal via SSH (compatible **Linux**, **macOS** et **Windows PowerShell**).
@@ -26,4 +26,4 @@ ssh kaf1@35.227.54.38
 * **Données collectées :** Ce jeu ne conserve ni votre prénom, ni votre date de naissance. Seuls les journaux techniques de connexion (IP) et le numéro de téléphone saisi au Niveau 4 sont enregistrés sur un serveur sécurisé.`.
 
 ### 📱 Convertisseur Mobile & Numérologie
-👉 **[Ouvrir l'application web KAF](https://kaf8trad.netlify.app/)**
+👉 https://kaf8trad.netlify.app/
